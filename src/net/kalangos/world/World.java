@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import net.kalangos.entities.Spawner;
 import net.kalangos.main.Game;
 
 public class World {
@@ -26,11 +27,16 @@ public class World {
 				for (int yy = 0; yy < map.getHeight(); yy++) {
 					int pixelAtual = pixels[xx + (yy * map.getWidth())];
 					tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
-					if (pixelAtual == 0xFF000000) {//onde não ando
+					if (pixelAtual == 0xFF000000) {// onde não ando
 						tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL);
-					} else if (pixelAtual == 0xFFFFFFFF) {//onde ando
+					} else if (pixelAtual == 0xFFFFFFFF) {// onde ando
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
-						
+
+					} else if (pixelAtual == 0xFFFF0000) {
+						// criar spanner
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
+						Spawner spawner = new Spawner(xx * 16, yy * 16, 16, 16, 0, null);
+						Game.entities.add(spawner);
 					}
 				}
 			}
