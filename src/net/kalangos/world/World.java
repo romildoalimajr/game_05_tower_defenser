@@ -26,14 +26,11 @@ public class World {
 				for (int yy = 0; yy < map.getHeight(); yy++) {
 					int pixelAtual = pixels[xx + (yy * map.getWidth())];
 					tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
-					if (pixelAtual == 0xFF000000) {
-						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
-					} else if (pixelAtual == 0xFFffffff) {
+					if (pixelAtual == 0xFF000000) {//onde não ando
 						tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL);
-						if (yy - 1 >= 0 && pixels[xx + ((yy - 1) * map.getWidth())] == 0xFFFFFFFF) {
-							tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16,
-									Game.spritesheet.getSprite(16, 16, 16, 16));
-						}
+					} else if (pixelAtual == 0xFFFFFFFF) {//onde ando
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
+						
 					}
 				}
 			}

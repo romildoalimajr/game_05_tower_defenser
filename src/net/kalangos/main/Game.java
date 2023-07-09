@@ -58,7 +58,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 
 	public void initFrame() {
-		frame = new JFrame("Super Mario - Kalangos");
+		frame = new JFrame("Tower Defense - Kalango's");
 		frame.add(this);
 		frame.setResizable(false);
 		frame.pack();
