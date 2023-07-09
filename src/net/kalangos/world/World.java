@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import net.kalangos.entities.Entity;
 import net.kalangos.entities.Spawner;
 import net.kalangos.main.Game;
 
@@ -14,6 +15,12 @@ public class World {
 	public static Tile[] tiles;
 	public static int WIDTH, HEIGHT;
 	public static final int TILE_SIZE = 16;
+	
+	public static int xFINAL = 0;
+	public static int yFINAL = 0;
+	
+	public static int xINITIAL = 0;
+	public static int yINITIAL = 0;
 
 	public World(String path) {
 		try {
@@ -36,7 +43,15 @@ public class World {
 						// criar spanner
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
 						Spawner spawner = new Spawner(xx * 16, yy * 16, 16, 16, 0, null);
+						xINITIAL = xx;
+						yINITIAL = yy;
 						Game.entities.add(spawner);
+					} else if(pixelAtual == 0xFF0026FF) {
+						//trajeto final do inimigo
+						tiles[xx + (yy * WIDTH)] = new TargetTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
+						xFINAL = xx;
+						yFINAL = yy;
+
 					}
 				}
 			}

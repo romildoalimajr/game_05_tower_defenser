@@ -28,7 +28,7 @@ public class Entity {
 
 	public int depth;
 
-	protected List<Node> path;
+	public List<Node> path;
 
 	public boolean debug = false;
 
