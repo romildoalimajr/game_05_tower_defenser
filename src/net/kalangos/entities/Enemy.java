@@ -51,10 +51,7 @@ public class Enemy extends Entity {
 	public void render(Graphics g) {
 		if (right) {
 			sprite = Entity.ENEMY_RIGHT;
-		} else if (left) {
-			sprite = Entity.ENEMY_LEFT;
-		}
-
+		} 
 		super.render(g);
 	}
 
