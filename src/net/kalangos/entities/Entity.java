@@ -15,10 +15,7 @@ import net.kalangos.world.World;
 
 public class Entity {
 
-
-	
 	public static BufferedImage ENEMY_RIGHT = Game.spritesheet.getSprite(33, 0, 16, 16);
-	
 
 	protected double x;
 	protected double y;

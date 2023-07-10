@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import net.kalangos.entities.Entity;
+import net.kalangos.entities.TowerController;
 import net.kalangos.graficos.Spritesheet;
 import net.kalangos.graficos.UI;
 import net.kalangos.world.World;
@@ -42,6 +43,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static Spritesheet spritesheet;
 
 	public UI ui;
+	
+	public TowerController towerController;
 
 	public Game() {
 		addKeyListener(this);
@@ -52,11 +55,13 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 		// Inicializando objetos.
+		
 		spritesheet = new Spritesheet("/spritesheet.png");
 		entities = new ArrayList<Entity>();
 
 		world = new World("/level1.png");
 		ui = new UI();
+		towerController = new TowerController(0,0,0,0,0,null);
 
 	}
 
@@ -96,6 +101,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			Entity e = entities.get(i);
 			e.tick();
 		}
+		
+		towerController.tick();
 
 	}
 
@@ -192,7 +199,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		towerController.isPressed = true;
+		towerController.xTarget = e.getX() / 3;
+		towerController.yTarget = e.getY() / 3;
+		System.out.println("Kd a torre?");
 	}
+	
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
