@@ -3,6 +3,7 @@ package net.kalangos.entities;
 import java.awt.image.BufferedImage;
 
 import net.kalangos.main.Game;
+import net.kalangos.world.World;
 
 public class TowerController extends Entity {
 
@@ -21,7 +22,7 @@ public class TowerController extends Entity {
 			// crair algo no mapa
 			int xx = (xTarget / 16) * 16;
 			int yy = (xTarget / 16) * 16;
-			Player player = new Player(xx, yy, 16, 16, 0, Game.spritesheet.getSprite(17, 17, 16, 16));
+			Player player = new Player(xx, yy, 16, 16, 0, Game.spritesheet.getSprite(16, 16, 16, 16));
 			for (int i = 0; i < Game.entities.size(); i++) {
 				Entity e = Game.entities.get(i);
 				if (e instanceof Player) {
@@ -31,10 +32,29 @@ public class TowerController extends Entity {
 					} 
 				}
 			}
+			
+			if(World.isFree(xx, yy)) {
+				liberado = false;
+				System.out.println("posição ocupada");
+			}
+			
 			if (liberado) {
-				Game.entities.add(player);
+				if(Game.money >= 2) {
+					Game.entities.add(player);
+					Game.money -= 2;
+				}else {
+					System.out.println("sem dinheiro");
+				}
 			}
 		}
+		/*
+		if(isPressed) {
+			int xx = (xTarget / 16) * 16;
+			int yy = (yTarget / 16) * 16;
+			Player player = new Player(xx, yy, 16,16,0, Game.spritesheet.getSprite(16, 16, 16, 16));
+			Game.entities.add(player);
+		}*/
 	}
+	
 
 }

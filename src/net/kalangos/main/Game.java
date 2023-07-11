@@ -60,8 +60,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		entities = new ArrayList<Entity>();
 
 		world = new World("/level1.png");
-		ui = new UI();
 		towerController = new TowerController(0,0,0,0,0,null);
+		ui = new UI();
+		
 
 	}
 
