@@ -21,8 +21,8 @@ public class TowerController extends Entity {
 			boolean liberado = true;
 			// crair algo no mapa
 			int xx = (xTarget / 16) * 16;
-			int yy = (xTarget / 16) * 16;
-			Player player = new Player(xx, yy, 16, 16, 0, Game.spritesheet.getSprite(16, 16, 16, 16));
+			int yy = (yTarget / 16) * 16;
+			Player player = new Player(xx, yy, 16, 16, 0, Game.spritesheet.getSprite(17, 17, 16, 16));
 			for (int i = 0; i < Game.entities.size(); i++) {
 				Entity e = Game.entities.get(i);
 				if (e instanceof Player) {
