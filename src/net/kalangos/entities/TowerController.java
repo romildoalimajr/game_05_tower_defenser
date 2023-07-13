@@ -47,6 +47,11 @@ public class TowerController extends Entity {
 				}
 			}
 		}
+		if(Game.life <= 0) {
+			//Game over
+			
+			System.exit(1);
+		}
 		/*
 		if(isPressed) {
 			int xx = (xTarget / 16) * 16;
